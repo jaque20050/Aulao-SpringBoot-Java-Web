@@ -15,18 +15,19 @@ import com.devsuperior.myfirstproject.repositories.ProductRepository;
 @RestController
 @RequestMapping(value = "/products")
 public class ProductResource {
-	
+
 	@Autowired
 	private ProductRepository categoryRepository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Product>>findAll(){
-		List<Product>list = categoryRepository.findAll();
+	public ResponseEntity<List<Product>> findAll() {
+		List<Product> list = categoryRepository.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Product>findById(@PathVariable Long id){
-		Product cat = categoryRepository.findById(id);
+	public ResponseEntity<Product> findById(@PathVariable Long id) {
+		Product cat = categoryRepository.findById(id).get();
 		return ResponseEntity.ok().body(cat);
 	}
 }

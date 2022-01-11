@@ -15,18 +15,19 @@ import com.devsuperior.myfirstproject.repositories.CategoryRepository;
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryResource {
-	
+
 	@Autowired
 	private CategoryRepository categoryRepository;
-	
+
 	@GetMapping
-	public ResponseEntity<List<Category>>findAll(){
-		List<Category>list = categoryRepository.findAll();
+	public ResponseEntity<List<Category>> findAll() {
+		List<Category> list = categoryRepository.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<Category>findById(@PathVariable Long id){
-		Category cat = categoryRepository.findById(id);
+	public ResponseEntity<Category> findById(@PathVariable Long id) {
+		Category cat = categoryRepository.findById(id).get();
 		return ResponseEntity.ok().body(cat);
 	}
 }
